@@ -1,6 +1,0 @@
-database:
-  detabase_name: "trust_my_rent"
-  table_name: "house_rent_germany_data"
-  host : "localhost"
-  user : "root"
-  password: "(VICtolo1989)"
