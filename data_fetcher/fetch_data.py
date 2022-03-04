@@ -63,4 +63,5 @@ if __name__ == "__main__":
     parsed_args = args.parse_args()
     sql_database = SqlDatabase(config_path=parsed_args.config)
     df = sql_database.database_table_to_df()
+    df.to_csv('../data_given/house_rent_germany_data.csv', index=False)
 
