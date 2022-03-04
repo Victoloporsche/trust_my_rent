@@ -37,8 +37,3 @@ class FeatureSelection:
         selected_features_list = selected_features_df.index.tolist()
         features_df = scaled_data[selected_features_list]
         return pd.concat([self.output, features_df], axis=1)
-
-if __name__ == '__main__':
-    data = pd.read_csv('../data_given/house_rent_germany_data.csv')
-    fs = FeatureSelection(input_data=data, target_col='totalRent')
-    print(fs._perform_feature_selection())
