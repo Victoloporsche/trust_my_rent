@@ -59,8 +59,8 @@ class SqlDatabase:
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser()
-    args.add_argument('--config', default='config_file.yaml')
+    args.add_argument('--config', default='../config_file.yaml')
     parsed_args = args.parse_args()
     sql_database = SqlDatabase(config_path=parsed_args.config)
     df = sql_database.database_table_to_df()
-    print(df)
+
