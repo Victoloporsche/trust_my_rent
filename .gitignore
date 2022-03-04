@@ -3,4 +3,4 @@ input/
 .idea/
 output/
 models/
-/config_file.yaml
+config_file.yaml
