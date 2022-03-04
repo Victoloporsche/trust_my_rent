@@ -65,4 +65,8 @@ if __name__ == "__main__":
     df = sql_database.database_table_to_df()
     df = df.drop(['houseNumber'], axis=1)
     df.to_csv('../data_given/house_rent_germany_data.csv', index=False)
+    df = pd.read_csv('../data_given/house_rent_germany_data.csv')
+    df = df[df['totalRent'].notna()]
+    df.to_csv('../data_given/house_rent_germany_data.csv', index=False)
+
 
