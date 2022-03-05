@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, Stackin
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split, cross_val_score
 
-from algorithm.feature_selection import FeatureSelection
+from feature_selection import FeatureSelection
 import pandas as pd
 
 
@@ -21,8 +21,8 @@ class CrossValidation:
     def _train_test_split(self) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
         features_df = self.feature_selection._perform_feature_selection(self.num_of_features_to_select)
         train_data, test_data = train_test_split(features_df, test_size=0.2, random_state=42)
-        train_data.to_csv('../data/processed/train.csv', index=False)
-        test_data.to_csv('../data/processed/test.csv', index=False)
+        train_data.to_csv('data/processed/train.csv', index=False)
+        test_data.to_csv('data/processed/test.csv', index=False)
 
         y_train = train_data[self.target_col]
         x_train = train_data.drop([self.target_col], axis=1)

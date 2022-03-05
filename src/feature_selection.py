@@ -1,7 +1,7 @@
 from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.model_selection import train_test_split
 
-from algorithm.feature_engineering import FeatureEngineering
+from feature_engineering import FeatureEngineering
 import pandas as pd
 
 

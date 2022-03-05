@@ -46,7 +46,7 @@ class FeatureEngineering:
             )
             mapping_dict[feature] = cat_mapping
 
-        with open("../data/processed/label_encoding.csv", "w", newline="") as csv_file:
+        with open("data/processed/label_encoding.csv", "w", newline="") as csv_file:
             writer = csv.writer(csv_file)
             for key, value in mapping_dict.items():
                 writer.writerow([key, value])

@@ -3,7 +3,7 @@ from sklearn.ensemble import ExtraTreesRegressor, RandomForestRegressor, Stackin
     GradientBoostingRegressor
 from sklearn.linear_model import LinearRegression
 
-from algorithm.cross_validation import CrossValidation
+from cross_validation import CrossValidation
 from sklearn.model_selection import GridSearchCV
 import pandas as pd
 import numpy as np
@@ -31,7 +31,7 @@ class ModelOptimization:
             optim = GridSearchCV(ex, param_grid=parameters)
             optim.fit(x_train, y_train)
             optimal_parameters = optim.best_params_.items()
-            print(optimal_parameters)
+            return optimal_parameters
 
         elif best_model == "RandomForestRegressor":
             rf = RandomForestRegressor()
@@ -43,7 +43,7 @@ class ModelOptimization:
             optim = GridSearchCV(rf, param_grid=parameters)
             optim.fit(x_train, y_train)
             optimal_parameters = optim.best_params_.items()
-            print(optimal_parameters)
+            return optimal_parameters
 
         elif best_model == "LinearRegression":
             lr = LinearRegression()
@@ -57,7 +57,7 @@ class ModelOptimization:
             optim = GridSearchCV(lasso, param_grid=params)
             optim.fit(x_train, y_train)
             optimal_parameters = optim.best_params_.items()
-            print(optimal_parameters)
+            return optimal_parameters
 
         elif best_model == "Ridge":
             ridge = linear_model.Ridge()
@@ -66,7 +66,7 @@ class ModelOptimization:
             optim = GridSearchCV(ridge, param_grid=params)
             optim.fit(x_train, y_train)
             optimal_parameters = optim.best_params_.items()
-            print(optimal_parameters)
+            return optimal_parameters
 
         elif best_model == "StackingRegressor":
             base_learners = [("lr", LinearRegression()), ("ET", ExtraTreesRegressor())]
@@ -88,7 +88,7 @@ class ModelOptimization:
             optim = GridSearchCV(adaboost, param_grid=params)
             optim.fit(x_train, y_train)
             optimal_parameters = optim.best_params_.items()
-            print(optimal_parameters)
+            return optimal_parameters
 
         elif best_model == "GradientBoostingRegressor":
             gb = GradientBoostingRegressor()
@@ -101,12 +101,6 @@ class ModelOptimization:
             optim = GridSearchCV(gb, param_grid=params)
             optim.fit(x_train, y_train)
             optimal_parameters = optim.best_params_.items()
-            print(optimal_parameters)
+            return optimal_parameters
         else:
             raise ValueError('The best model does not have an optimization strategy!')
-
-
-if __name__ == "__main__":
-    data = pd.read_csv("../data_given/house_rent_germany_data.csv")
-    optim = ModelOptimization(input_data=data, target_col="totalRent")
-    optim.perform_grid_search_model_optimization()

@@ -1,0 +1,25 @@
+base:
+  project: germany_house_rent_project
+  random_state: 42
+  target_col: totalRent
+
+data_source:
+  sql_source: data_given/house_rent_germany_data.csv
+
+train_test_path:
+  train_data: data/processed/train.csv
+  test_data: data/processed/test.csv
+
+estimators:
+  RidgeRegression:
+    params:
+      alpha: 0.03
+
+model_dir: saved_models
+
+mlflow_config:
+  artifacts_dir: artifacts
+  experiment_name: Ridge regression
+  run_name: mlops
+  registered_model_name: RidgeRegressionModel
+  remote_server_uri: http://0.0.0.0:1234

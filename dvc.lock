@@ -1,0 +1,17 @@
+schema: '2.0'
+stages:
+  train_and_evaluate:
+    cmd: python src/train_and_evaluate.py --config=params.yaml
+    deps:
+    - path: data/processed/test.csv
+      md5: c18a245c36ccd5a5f395a71430ee287f
+      size: 20559380
+    - path: data/processed/train.csv
+      md5: 32d583c4cdb3d3e70a019d3ec02edb35
+      size: 82247511
+    - path: src/train_and_evaluate.py
+      md5: 5aed0d22afee15be12688b42d74d2237
+      size: 2632
+    params:
+      params.yaml:
+        estimators.RidgeRegression.params.alpha: 0.03
