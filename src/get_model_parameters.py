@@ -10,22 +10,24 @@ def read_params(config_path):
     return config
 
 
-def get_data(config_path):
+def get_data(config_path) -> pd.DataFrame:
     config = read_params(config_path)
     data_path = config['data_source']['sql_source']
     df = pd.read_csv(data_path, sep=',', encoding='utf-8')
     return df
 
 
-def get_parameters(config_path):
+def get_parameters(config_path) -> dict:
     config = read_params(config_path)
     sql_data = config['data_source']['sql_source']
     input_data = pd.read_csv(sql_data)
 
     target_col = config['base']['target_col']
 
-    optim = ModelOptimization(input_data=input_data, target_col=target_col)
-    return optim.perform_grid_search_model_optimization()
+    optim = ModelOptimization(input_data=input_data,
+                              target_col=target_col)
+    best_parameters = optim.perform_grid_search_model_optimization()
+    return best_parameters
 
 
 if __name__ == '__main__':

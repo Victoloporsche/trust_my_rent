@@ -1,11 +1,11 @@
 from sklearn import linear_model
 from sklearn.ensemble import ExtraTreesRegressor, RandomForestRegressor, StackingRegressor, AdaBoostRegressor, \
     GradientBoostingRegressor
+from sklearn.linear_model import ElasticNet
 from sklearn.linear_model import LinearRegression
 
 from cross_validation import CrossValidation
 from sklearn.model_selection import GridSearchCV
-import pandas as pd
 import numpy as np
 
 np.random.seed(42)
@@ -45,9 +45,14 @@ class ModelOptimization:
             optimal_parameters = optim.best_params_.items()
             return optimal_parameters
 
-        elif best_model == "LinearRegression":
-            lr = LinearRegression()
-            fit_model = lr.fit(x_train, y_train)
+        elif best_model == "ElasticNet":
+            elastic = ElasticNet()
+            params = {"alpha": [0.02, 0.024, 0.025, 0.026, 0.03]}
+
+            optim = GridSearchCV(elastic, param_grid=params)
+            optim.fit(x_train, y_train)
+            optimal_parameters = optim.best_params_.items()
+            return optimal_parameters
 
 
         elif best_model == "Lasso":

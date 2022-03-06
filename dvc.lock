@@ -15,3 +15,62 @@ stages:
     params:
       params.yaml:
         estimators.RidgeRegression.params.alpha: 0.03
+  get_model_parameters:
+    cmd: python src/get_model_parameters.py --config=params.yaml
+    deps:
+    - path: src/cross_validation.py
+      md5: 188ecdfa393703ab3960dcb8a0c2991c
+      size: 3347
+    - path: src/feature_engineering.py
+      md5: a278ce7f2caa8f55462b5aaa2af50a6f
+      size: 3597
+    - path: src/feature_selection.py
+      md5: 2da1603556ba5b612f7cc433f5417610
+      size: 1621
+    - path: src/model_optimization.py
+      md5: 3022599f07b87b49f6759712055c4e2d
+      size: 4184
+    outs:
+    - path: data/processed/label_encoding.csv
+      md5: 977db7cf6c8c653ac45da02598f8d953
+      size: 192497
+    - path: data/processed/test.csv
+      md5: 3d0d9f325b52365afa6f40f8fcc205c1
+      size: 4424146
+    - path: data/processed/train.csv
+      md5: a85009abb3dc22519ec333382f607723
+      size: 17696376
+  fetch_data:
+    cmd: python data_fetcher/fetch_data.py --config=config_file.yaml
+    deps:
+    - path: data_fetcher/fetch_data.py
+      md5: e4663f395e130d03bf3e240bff45629c
+      size: 2913
+  cv_and_get_model_parameters:
+    cmd: python src/get_model_parameters.py --config=params.yaml
+    deps:
+    - path: src/cross_validation.py
+      md5: 188ecdfa393703ab3960dcb8a0c2991c
+      size: 3347
+    - path: src/feature_engineering.py
+      md5: a278ce7f2caa8f55462b5aaa2af50a6f
+      size: 3597
+    - path: src/feature_selection.py
+      md5: 2da1603556ba5b612f7cc433f5417610
+      size: 1621
+    - path: src/get_model_parameters.py
+      md5: 4b9e3618a500b1ee8bd8096c67edb8f2
+      size: 1121
+    - path: src/model_optimization.py
+      md5: 3022599f07b87b49f6759712055c4e2d
+      size: 4184
+    outs:
+    - path: data/processed/label_encoding.csv
+      md5: 977db7cf6c8c653ac45da02598f8d953
+      size: 192497
+    - path: data/processed/test.csv
+      md5: c18a245c36ccd5a5f395a71430ee287f
+      size: 20559380
+    - path: data/processed/train.csv
+      md5: 32d583c4cdb3d3e70a019d3ec02edb35
+      size: 82247511

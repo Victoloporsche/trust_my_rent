@@ -1,5 +1,6 @@
 base:
   project: germany_house_rent_project
+  number_of_features_to_select: 40
   random_state: 42
   target_col: totalRent
 

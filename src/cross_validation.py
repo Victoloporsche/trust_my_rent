@@ -2,6 +2,7 @@ from sklearn import linear_model
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, StackingRegressor, AdaBoostRegressor, \
     GradientBoostingRegressor
 from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import ElasticNet
 from sklearn.model_selection import train_test_split, cross_val_score
 
 from feature_selection import FeatureSelection
@@ -43,7 +44,7 @@ class CrossValidation:
         model = ExtraTreesRegressor()
         self.clf_models.append((model))
 
-        model = LinearRegression()
+        model = ElasticNet()
         self.clf_models.append((model))
 
         model = linear_model.Lasso()
