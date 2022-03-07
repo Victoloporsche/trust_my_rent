@@ -19,9 +19,11 @@ class CrossValidation:
         self.clf_models = list()
         self._initialize_clf_models()
 
-    def _train_test_split(self) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-        features_df = self.feature_selection._perform_feature_selection(self.num_of_features_to_select)
-        train_data, test_data = train_test_split(features_df, test_size=0.2, random_state=42)
+    def _train_test_split(self, test_size, random_state) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+        features_df = self.feature_selection._perform_feature_selection(test_size,
+                                                                        random_state,
+                                                                        self.num_of_features_to_select)
+        train_data, test_data = train_test_split(features_df, test_size=test_size, random_state=random_state)
         train_data.to_csv('data/processed/train.csv', index=False)
         test_data.to_csv('data/processed/test.csv', index=False)
 
@@ -65,8 +67,8 @@ class CrossValidation:
         model = GradientBoostingRegressor()
         self.clf_models.append((model))
 
-    def _k_fold_cross_validation(self, k_value: int = 4):
-        x_train, y_train, x_test, y_test = self._train_test_split()
+    def _k_fold_cross_validation(self, test_size, random_state, k_value: int):
+        x_train, y_train, x_test, y_test = self._train_test_split(test_size, random_state)
         clf_models = self._get_models()
         models = []
         results = {}

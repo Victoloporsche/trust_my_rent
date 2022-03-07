@@ -23,10 +23,15 @@ def get_parameters(config_path) -> dict:
     input_data = pd.read_csv(sql_data)
 
     target_col = config['base']['target_col']
+    test_size = config['base']['test_size']
+    random_state = config['base']['random_state']
+    k_value = config['base']['k_value']
 
     optim = ModelOptimization(input_data=input_data,
                               target_col=target_col)
-    best_parameters = optim.perform_grid_search_model_optimization()
+    best_parameters = optim.perform_grid_search_model_optimization(test_size=test_size,
+                                                                   random_state=random_state,
+                                                                   k_value=k_value)
     return best_parameters
 
 

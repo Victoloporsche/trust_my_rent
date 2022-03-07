@@ -54,6 +54,11 @@ class SqlDatabase:
         db_connection = create_engine(db_connection_str)
 
         df = pd.read_sql(" ".join(["select * from", self._read_params()['database']['table_name']]), con=db_connection)
+        df = df.drop(['houseNumber'], axis=1)
+        df.to_csv('data_given/house_rent_germany_data.csv', index=False)
+        df = pd.read_csv('data_given/house_rent_germany_data.csv')
+        df = df[df['totalRent'].notna()]
+        df.to_csv('data_given/house_rent_germany_data.csv', index=False)
         return df
 
 
@@ -63,11 +68,7 @@ if __name__ == "__main__":
     parsed_args = args.parse_args()
     sql_database = SqlDatabase(config_path=parsed_args.config)
     df = sql_database.database_table_to_df()
-    df = df.drop(['houseNumber'], axis=1)
-    df.to_csv('data_given/house_rent_germany_data.csv', index=False)
-    df = pd.read_csv('data_given/house_rent_germany_data.csv')
-    df = df[df['totalRent'].notna()]
-    df.to_csv('data_given/house_rent_germany_data.csv', index=False)
+
 
 
 

@@ -18,8 +18,10 @@ class ModelOptimization:
         self.target_col = target_col
         self.cross_validation = CrossValidation(input_data, target_col, num_of_features_to_select)
 
-    def perform_grid_search_model_optimization(self):
-        best_model, x_train, y_train, x_test, y_test = self.cross_validation._k_fold_cross_validation()
+    def perform_grid_search_model_optimization(self, test_size, random_state, k_value):
+        best_model, x_train, y_train, x_test, y_test = self.cross_validation._k_fold_cross_validation(test_size,
+                                                                                                      random_state,
+                                                                                                      k_value)
 
         if best_model == "ExtraTreesRegressor":
             ex = ExtraTreesRegressor()

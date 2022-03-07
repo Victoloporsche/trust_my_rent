@@ -12,14 +12,14 @@ class FeatureSelection:
         self.feature_engineering = FeatureEngineering(input_data, target_col)
         self.output = self.input_data[self.target_col]
 
-    def _split_data(self) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    def _split_data(self, test_size, random_state) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
         scaled_data = self.feature_engineering._scale_features()
-        train_data, test_data = train_test_split(scaled_data, test_size=0.2, random_state=42)
+        train_data, test_data = train_test_split(scaled_data, test_size=test_size, random_state=random_state)
 
         return scaled_data, train_data, test_data
 
-    def _perform_feature_selection(self, num_of_features_to_select: int = None) -> pd.DataFrame:
-        scaled_data, train, _ = self._split_data()
+    def _perform_feature_selection(self, test_size, random_state, num_of_features_to_select: int = None) -> pd.DataFrame:
+        scaled_data, train, _ = self._split_data(test_size, random_state)
 
         if not num_of_features_to_select:
             num_of_features_to_select = len(scaled_data.columns)

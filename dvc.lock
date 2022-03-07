@@ -44,26 +44,29 @@ stages:
     cmd: python data_fetcher/fetch_data.py --config=config_file.yaml
     deps:
     - path: data_fetcher/fetch_data.py
-      md5: e4663f395e130d03bf3e240bff45629c
-      size: 2913
+      md5: ae94b124ea365f926443523a656c3838
+      size: 2934
   cv_and_get_model_parameters:
     cmd: python src/get_model_parameters.py --config=params.yaml
     deps:
+    - path: data_given/house_rent_germany_data.csv
+      md5: 32852a741a83f0badf0dec96baeb327e
+      size: 47930442
     - path: src/cross_validation.py
-      md5: 188ecdfa393703ab3960dcb8a0c2991c
-      size: 3347
+      md5: b8d131e8ac77b0df269e2861a2543795
+      size: 3601
     - path: src/feature_engineering.py
       md5: a278ce7f2caa8f55462b5aaa2af50a6f
       size: 3597
     - path: src/feature_selection.py
-      md5: 2da1603556ba5b612f7cc433f5417610
-      size: 1621
+      md5: f3c55957bbcf25009c8d650d86177b24
+      size: 1710
     - path: src/get_model_parameters.py
-      md5: 4b9e3618a500b1ee8bd8096c67edb8f2
-      size: 1121
+      md5: 2b79f340290cb3c38696fb8c16f330db
+      size: 1452
     - path: src/model_optimization.py
-      md5: 3022599f07b87b49f6759712055c4e2d
-      size: 4184
+      md5: 295094ca83259dc4e290bd2f38e6c476
+      size: 4454
     outs:
     - path: data/processed/label_encoding.csv
       md5: 977db7cf6c8c653ac45da02598f8d953
