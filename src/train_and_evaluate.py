@@ -26,8 +26,8 @@ def get_data(config_path):
 def eval_metrics(actual, pred):
     rmse = np.sqrt(mean_squared_error(actual, pred))
     mae = mean_absolute_error(actual, pred)
-    r2 = r2_score(actual, pred)
-    return rmse, mae, r2
+    r_2 = r2_score(actual, pred)
+    return rmse, mae, r_2
 
 
 def train_and_evaluate(config_path):

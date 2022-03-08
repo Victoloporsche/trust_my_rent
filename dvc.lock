@@ -10,8 +10,8 @@ stages:
       md5: 32d583c4cdb3d3e70a019d3ec02edb35
       size: 82247511
     - path: src/train_and_evaluate.py
-      md5: 5aed0d22afee15be12688b42d74d2237
-      size: 2632
+      md5: 1c6b6854e09fda28f1c45b0432f9cf71
+      size: 2634
     params:
       params.yaml:
         estimators.RidgeRegression.params.alpha: 0.03
@@ -81,5 +81,5 @@ stages:
     cmd: python src/log_production_model.py --config=params.yaml
     deps:
     - path: src/log_production_model.py
-      md5: 92715e89a70728ce2a49ae6ec8d0d8e1
-      size: 2015
+      md5: ea07a15f6b87ad40105728785cec2973
+      size: 2005
