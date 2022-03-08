@@ -77,3 +77,9 @@ stages:
     - path: data/processed/train.csv
       md5: 32d583c4cdb3d3e70a019d3ec02edb35
       size: 82247511
+  log_production_model:
+    cmd: python src/log_production_model.py --config=params.yaml
+    deps:
+    - path: src/log_production_model.py
+      md5: 92715e89a70728ce2a49ae6ec8d0d8e1
+      size: 2015

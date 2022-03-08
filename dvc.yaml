@@ -1,22 +1,22 @@
 stages:
-  fetch_data:
-    cmd: python data_fetcher/fetch_data.py --config=config_file.yaml
-    deps:
-      - data_fetcher/fetch_data.py
-
-  cv_and_get_model_parameters:
-    cmd: python src/get_model_parameters.py --config=params.yaml
-    deps:
-      - data_given/house_rent_germany_data.csv
-      - src/feature_engineering.py
-      - src/feature_selection.py
-      - src/cross_validation.py
-      - src/model_optimization.py
-      - src/get_model_parameters.py
-    outs:
-    - data/processed/train.csv
-    - data/processed/test.csv
-    - data/processed/label_encoding.csv
+#  fetch_data:
+#    cmd: python data_fetcher/fetch_data.py --config=config_file.yaml
+#    deps:
+#      - data_fetcher/fetch_data.py
+#
+#  cv_and_get_model_parameters:
+#    cmd: python src/get_model_parameters.py --config=params.yaml
+#    deps:
+#      - data_given/house_rent_germany_data.csv
+#      - src/feature_engineering.py
+#      - src/feature_selection.py
+#      - src/cross_validation.py
+#      - src/model_optimization.py
+#      - src/get_model_parameters.py
+#    outs:
+#    - data/processed/train.csv
+#    - data/processed/test.csv
+#    - data/processed/label_encoding.csv
 
   train_and_evaluate:
     cmd: python src/train_and_evaluate.py --config=params.yaml
@@ -26,3 +26,8 @@ stages:
       - src/train_and_evaluate.py
     params:
       - estimators.RidgeRegression.params.alpha
+
+  log_production_model:
+    cmd: python src/log_production_model.py --config=params.yaml
+    deps:
+      - src/log_production_model.py
